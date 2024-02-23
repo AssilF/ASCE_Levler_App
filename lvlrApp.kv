@@ -1,17 +1,24 @@
-<rotsce>:
-    do_default_tab: False
+MDScreen:
+    md_bg_color: 1, 1, 1, 1
 
-    TabbedPanelItem:
-        text: "Tab 1"
-        Label:
-            text: "Henlo dog"
+    MDButton:
+        style: "elevated"
+        pos_hint: {"center_x": .5, "center_y": .5}
 
-    TabbedPanelItem:
-        text: "nignong"
-        GridLayout:
-            cols : 1
-            rows : 2
-            Label:
-                text: "Bonjour"
-            Button:
-                text: "Bonjoursce"
+        MDButtonIcon:
+            icon: "plus"
+
+        MDButtonText:
+            text: "Elevated"
+
+
+    MDTopAppBar:
+        md_bg_color: 0, 1, 1, 1
+        type: "small"
+        MDLabel:
+            text: "Bonjour :)"
+            text_color: 1,1,0,1
+            size_hint: .5,.2
+            pos_hint: {"center_y":.5}
+        MDTopAppBarTitle:
+            text:"Levler X1"
