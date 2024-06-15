@@ -1,24 +1,159 @@
-MDScreen:
-    md_bg_color: 1, 1, 1, 1
+#:import images_path kivymd.images_path
 
-    MDButton:
-        style: "elevated"
-        pos_hint: {"center_x": .5, "center_y": .5}
+RootLayout:
+    screen_mngr: screen_mngr
+    settingsBtn: settingsBtn
+    homeBtn: homeBtn
+    infoBtn: infoBtn
+    controlsBtn: controlsBtn
+    waterLVL: 0.00
 
-        MDButtonIcon:
-            icon: "plus"
+    ScreenManager:
+        id: screen_mngr
+        home: home
 
-        MDButtonText:
-            text: "Elevated"
+        MDScreen:
+            md_bg_color: 0.9,0.98,0.9,0.95
+            id: home
+            name: 'home'
+            MDBoxLayout:
+                orientation: 'vertical'
+
+                MDLabel:
+                    text: 'Water Level:'
+                    font_size: 50
+                    halign: 'center'
+                MDButton:
+                    id: test
+                    on_press:
+                        root.communicate()
+                MDFloatLayout:
+                    canvas:
+                        Color:
+                            rgb: 0.05,0.1,0.1,0.5
+                        Rectangle:
+                            size: root.width/3, root.height/1.5
+                            pos: root.center_x*1.2, root.center_y-(root.height/4)-root.height*0.1
+                        Color:
+                            rgb: 0.05,0.7,1,0.8
+                        Rectangle:
+                            size: root.width/3, root.waterLVL
+                            pos: root.center_x*1.2, root.center_y-(root.height/4)-root.height*0.1
 
 
-    MDTopAppBar:
-        md_bg_color: 0, 1, 1, 1
-        type: "small"
+
+        MDScreen:
+            id: settings
+            md_bg_color: 0.9,0.98,0.9,0.9
+            name: 'settings'
+            MDLabel:
+                id: testLab
+                text: 'Settings Screen'
+                font_size: 50
+                halign: 'center'
+
+
+
+
+
+
+        MDScreen:
+            md_bg_color: 0.9,0.98,0.9,0.75
+            id: controls
+            name: 'controls'
+            MDLabel:
+                text: 'Coming Soon (probably)'
+                font_size: 50
+                halign: 'center'
+
+
+
+    MDRelativeLayout:
+        canvas:
+            Color:
+                rgb: 0.1,1,0.4,.8
+            Rectangle:
+                size: root.width, root.height*0.1
+                pos: root.center_x-root.width/2,root.height-root.height*0.1
+
+        MDButton:
+            ripple_scale: 0
+            style: "tonal"
+            theme_height: 'Custom'
+            id: settingsBtn
+            theme_width: 'Custom'
+            radius: 9,4,4,9
+            on_press:
+                root.hopScreens('settings','right',settingsBtn)
+            pos_hint: {"center_x":.3,"center_y":.94}
+            MDButtonText:
+                text: "Settings"
+                halign: "left"
+                size_hint_y: None
+                height: self.texture_size[1]
+                width: self.texture_size[1]
+                text_size:  [None, None]
+                pos_hint: {"center_x":.5,"center_y":.5}
+            MDButtonIcon:
+                icon: "wrench"
+                pos_hint: {"center_x":.17,"center_y":.5}
+
+        MDButton:
+            ripple_scale: 0
+            style: "tonal"
+            theme_height: 'Custom'
+            theme_width: 'Custom'
+            id: homeBtn
+            radius: 6,6,6,6
+            on_press:
+                root.hopScreens('home','last',homeBtn)
+            pos_hint: {"center_x":.5,"center_y":.94}
+            MDButtonText:
+                text: "Overview"
+                halign: "left"
+                size_hint_y: None
+                height: self.texture_size[1]
+                width: self.texture_size[1]
+                text_size:  [None, None]
+                pos_hint: {"center_x":.5,"center_y":.5}
+            MDButtonIcon:
+                icon: "home"
+                pos_hint: {"center_x":.17,"center_y":.5}
+
+        MDButton:
+            ripple_scale: 0
+            style: "tonal"
+            theme_width: 'Custom'
+            theme_height: 'Custom'
+            id: controlsBtn
+            radius: 4,9,9,4
+            on_press:
+                root.hopScreens('controls','left',controlsBtn)
+
+            pos_hint: {"center_x":.7,"center_y":.94}
+
+            MDButtonText:
+                text: "Controls"
+                text_size:  [None, None]
+                size_hint_y: None
+                height: self.texture_size[1]
+                width: self.texture_size[1]
+                pos_hint: {"center_x":.5,"center_y":.5}
+                halign: "left"
+            MDButtonIcon:
+                icon: "wifi"
+                pos_hint: {"center_x":.17,"center_y":.5}
+
+        MDIconButton:
+            id:infoBtn
+            on_press:
+                root.openDiag()
+            pos_hint: {"center_x":.95,"center_y":.95}
+            icon: "information"
+
+
         MDLabel:
-            text: "Bonsoir :)"
-            text_color: 1,1,0,1
-            size_hint: .5,.2
-            pos_hint: {"center_y":.5}
-        MDTopAppBarTitle:
-            text:"Levler X1"
+            font_size: 50
+            text: "Levler X1"
+            pos_hint: {"center_x":.51,"center_y":.95}
+
